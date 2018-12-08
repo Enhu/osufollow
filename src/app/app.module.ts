@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { StatsComponent } from './stats/stats.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     ProfileComponent,
-    StatsComponent
+    StatsComponent,
+    MainComponent
   ],
   imports: [
     NgbModule,
