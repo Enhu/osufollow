@@ -1,3 +1,25 @@
-<p>
-  stats works!
-</p>
+<h1>
+    User Information
+    </h1>
+    <div>
+    <table  style="width:100%">
+    <tr>
+        <th>Username</th>
+        <th>Country</th>
+        <th>Performance Points</th>
+        <th>Ranking</th>
+        <th>Total Playcount</th>
+        <th>Overall Accuracy</th>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td> {{ user.username }} </td>
+        <td> {{ user.country }} </td>
+        <td> {{ user.pp_raw }} </td>
+        <td> {{ user.pp_rank }} </td>
+        <td> {{ user.playcount }} </td>
+        <td> {{ user.accuracy }} </td>
+        
+    </tr>
+    </table>
+    
+    </div>

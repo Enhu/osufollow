@@ -1,0 +1,10 @@
+#logo{
+    width: 300px; 
+    height: 300px;
+}
+
+#searchBar{
+    padding: 4%;
+    width: 50%;
+    margin: 0 auto;
+}
