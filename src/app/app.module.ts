@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { StatsComponent } from './stats/stats.component';
 import { MainComponent } from './main/main.component';
+import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from  '@angular/common/http';
 
 @NgModule({
@@ -16,7 +17,8 @@ import { HttpClientModule } from  '@angular/common/http';
     RegisterComponent,
     ProfileComponent,
     StatsComponent,
-    MainComponent
+    MainComponent,
+    LoginComponent
   ],
   imports: [
     NgbModule,
