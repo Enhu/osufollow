@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { $ } from 'protractor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -6,10 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
-  title = "osu! follow";
-  
-  ngOnInit() {
     
+  constructor(private router:Router){}
+
+  value = '';
+  onEnter(value: string) { 
+    this.value = value;
+    this.goStats();
   }
+ 
+  goStats(){
+    this.router.navigate(['/stats'], { queryParams: { id: this.value}});
+  }
+
+  ngOnInit() {
+     
+    
+    
+    
+    }
 }
+

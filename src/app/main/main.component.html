@@ -1,2 +1,5 @@
-<h1 id="welcomeTitle">Welcome to {{title}}</h1>
-<a href="https://www.google.com"> <img src="assets/img/osufollowlogo.png" style="width: 300px; height: 300px;"> </a>
+<a href="main"> <img id="logo" class="rounded mx-auto d-block" src="assets/img/osufollowlogo.png"> </a>
+
+<div id="searchBar" class="form col-md-6;text-center">
+    <input #box (keyup.enter)="onEnter(box.value)" class="form-control" placeholder="Enter Username">
+</div>
