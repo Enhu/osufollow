@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class StatsComponent implements OnInit {
   
   userParam : string;
+  avatarUrl : string;
   private  users:  Array<object> = [];
   constructor(private  apiService:  APIService, private router: ActivatedRoute) { 
   }
@@ -18,8 +19,15 @@ export class StatsComponent implements OnInit {
     debugger;
     this.apiService.getUserInfo(this.userParam).subscribe((data:  Array<object>) => {
         this.users  =  data;
+        //this.avatarUrl = data;
+
         console.log(data);
     });
+}
+
+public getUserProfilePic(){
+
+
 }
 
   ngOnInit() {
