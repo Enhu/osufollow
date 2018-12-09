@@ -9,7 +9,7 @@ import {Globals} from './globals';
 export class AppComponent implements OnInit {
 
   private role: string;
-  private loginInfo: boolean;
+  private loginInfo: [String, number];
 
   constructor(private globals: Globals) {
     this.role = globals.role;
@@ -17,10 +17,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(){
-   console.log(this.role);
-
-
-
+    console.log(this.role);  
   }
-
 }

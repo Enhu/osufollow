@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
 export class Globals {
   role: string = 'test';
 
-  loginInfo: boolean = true;
-  
+  loginInfo: [String, number] = ["mMartin", 25];
+
 }
