@@ -9,7 +9,6 @@ export  class  APIService {
   API_URL  =  'https://osu.ppy.sh/api/';
   constructor(private  httpClient:  HttpClient) {}
   getUserInfo(value: string){
-    debugger;
       return  this.httpClient.get(`${this.API_URL}/get_user` + this.API_KEY + '&u=' + value);
   }
   getUserBest(value: string){
@@ -18,7 +17,7 @@ export  class  APIService {
   getUserRecent(value: string){
     return  this.httpClient.get(`${this.API_URL}/get_user_recent` + this.API_KEY + '&u=' + value);
   }
-  /*getBeatmapInfo(value: string){
-    return  this.httpClient.get(`${this.API_URL}/get_beatmaps` + + this.API_KEY + '&u=' + value);
-  }*/
+  getBeatmapInfo(value: string){
+    return  this.httpClient.get(`${this.API_URL}/get_beatmaps` + this.API_KEY + '&b=' + value);
+  }
 }
