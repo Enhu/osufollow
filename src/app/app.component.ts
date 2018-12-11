@@ -17,14 +17,18 @@ export class AppComponent implements OnInit {
     this.loginInfo = globals.loginInfo;
   }
 
-  
   value = '';
   onEnter(value: string) { 
+    debugger;
     this.value = value;
     this.goStats();
   }
   goStats(){
-    this.router.navigate(['/stats'], { queryParams: { id: this.value}});
+    if(window.location.href.indexOf('http://localhost:4200/stats') != 0){
+      this.router.navigate(['/stats'], { queryParams: { id: this.value}});
+    }else{
+      window.location.search = '?id=' + this.value;
+    }
   }
 
   ngOnInit(){

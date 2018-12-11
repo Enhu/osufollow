@@ -4,13 +4,12 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
-    
-    <form class="form-inline">
+    <div class="form-inline">
       <div class="md-form my-0">
         <input #box (keyup.enter)="onEnter(box.value)" class="form-control mr-sm-2" type="search" placeholder="Enter username" aria-label="Search">
         <button class="btn btn-outline-success mr-sm-2 my-2 my-sm-0" type="submit">Search</button>
       </div>
-    </form>
+    </div>
   </div>
   <ul class="nav justify-content-end grey" *ngIf="loggedIn">
     <li class="nav-item">
