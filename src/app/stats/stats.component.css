@@ -1,4 +1,12 @@
-th, table , h1{
+th, table , h1, div{
 
     color: white;
+}
+
+.panel-body {
+    padding: 15px;
+}
+
+body {
+    padding-top: 40px;
 }

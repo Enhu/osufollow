@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
 
   value = '';
   onEnter(value: string) { 
-    debugger;
     this.value = value;
     this.goStats();
   }

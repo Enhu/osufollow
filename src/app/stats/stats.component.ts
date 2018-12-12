@@ -33,14 +33,12 @@ export class StatsComponent implements OnInit {
 
 async getBeatmapInfo(beatmapID : string, maxcombo : string, pp : string, rank : string, request : string){
   this.apiService.getBeatmapInfo(beatmapID).subscribe((data:  Array<object>) => {
-    debugger;
     data['0']['maxcombo'] = maxcombo;
     data['0']['pp'] = pp;
     data['0']['rank'] = rank;
     if (request == 'best'){
       this.bestScores.push(data);
     }else{
-      debugger;
       this.recentScores.push(data);
     }
 });
@@ -65,7 +63,6 @@ async getUserBest(){
 
 async getUserRecent(){
   this.apiService.getUserRecent(this.userParam).subscribe((data:  Array<object>) => {
-    debugger;
     var request = 'recent';
     var beatmapID = '';
     var maxcombo = '';

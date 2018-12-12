@@ -5,7 +5,7 @@ import { HttpClient} from  '@angular/common/http';
   providedIn: 'root'
 })
 export  class  APIService {
-  API_KEY = '';
+  API_KEY = '?k=0ca202de6d1c269607b667734418251e5d810a2a';
   API_URL  =  'https://osu.ppy.sh/api/';
   constructor(private  httpClient:  HttpClient) {}
   getUserInfo(value: string){
