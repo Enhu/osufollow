@@ -25,6 +25,9 @@ export class AppComponent implements OnInit {
   }
   goStats(){
     if(window.location.href.indexOf('http://localhost:4200/stats') != 0){
+       //indexOF se usa aca para verificar si
+       //pregunta si el indice de algo existe
+       //si el index de cierta porcion de la url existe = 0 if not = 1
       this.router.navigate(['/stats'], { queryParams: { id: this.value}});
     }else{
       window.location.search = '?id=' + this.value;
