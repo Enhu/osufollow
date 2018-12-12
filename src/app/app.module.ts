@@ -10,6 +10,8 @@ import { StatsComponent } from './stats/stats.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from  '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import APIService from './api.service';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,11 @@ import { HttpClientModule } from  '@angular/common/http';
     NgbModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [APIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

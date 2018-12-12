@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { APIService } from  '../api.service';
+import APIService from  '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient} from  '@angular/common/http';
 import { Observable } from 'rxjs';
