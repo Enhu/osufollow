@@ -42,3 +42,4 @@ config.json
 # System Files
 .DS_Store
 Thumbs.db
+.vs
