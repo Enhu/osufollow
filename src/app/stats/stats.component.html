@@ -6,13 +6,23 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm" style="text-align:center">
-                    <div class="panel-body">
-                    <img [src]="avatarUrl" height="200" *ngIf="avatarUrl">
+                    <div class="panel-body"> 
+                        <img [src]="avatarUrl" height="200" *ngIf="avatarUrl">
                     </div>
-                   
+                    <div *ngFor="let user of users">
+                        {{ user.username }}
+                    </div>
                 </div>
+
                 <div class="col-sm" style="text-align:center">
-                    chau
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

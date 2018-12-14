@@ -3,6 +3,9 @@ th, table , h1, div{
     color: white;
 }
 
+h5, p, a {
+    color: black
+}
 .panel-body {
     padding: 15px;
 }
