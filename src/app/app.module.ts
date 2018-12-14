@@ -12,9 +12,11 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from  '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import APIService from './_services/api.service';
+import { AuthGuard } from './_helpers/auth.guard';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthenticationService } from './_services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,10 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass: 'toast-bottom-right'
     })
   ],
-  providers: [APIService,
+  providers: [
+    APIService,
+    AuthGuard,
+    AuthenticationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true }
   ],
   bootstrap: [AppComponent]

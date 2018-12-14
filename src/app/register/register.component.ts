@@ -12,6 +12,7 @@ import {AbstractControl} from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   submitted = false;
+  loading = false;
   registerForm: FormGroup;
   constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private apiService : APIService,  private router: Router) { }
 
@@ -29,14 +30,13 @@ export class RegisterComponent implements OnInit {
   }
 
   MatchPassword(AC: AbstractControl) {
-    let password = AC.get('password').value; // to get value in input tag
-    let confirmPassword = AC.get('confirmPassword').value; // to get value in input tag
+    let password = AC.get('password').value; 
+    let confirmPassword = AC.get('confirmPassword').value;
      if(password != confirmPassword) {
-         console.log('false');
          AC.get('confirmPassword').setErrors( {MatchPassword: true} )
      } else {
-         console.log('true');
-         return null
+        AC.get('confirmPassword').setErrors(null)
+        return null
      }
  }
   
@@ -54,8 +54,10 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(){
   this.submitted = true;
+  this.loading = true;
   //if the registration is invalid, it voids out
   if (this.registerForm.invalid) {
+      this.loading = false;
       return;
    }
 
