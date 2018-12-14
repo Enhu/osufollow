@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/']);
+    location.reload();
     this.loggedIn = false;
   }
 

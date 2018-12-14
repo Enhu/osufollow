@@ -20,7 +20,7 @@ namespace osufollowService
             var now = DateTime.UtcNow;
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[]
+                Subject = new ClaimsIdentity(new []
                         {
                             new Claim(ClaimTypes.Name, username)
                         }),

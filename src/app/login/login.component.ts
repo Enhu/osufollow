@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../_services/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,9 +15,14 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
 
   constructor(private formBuilder: FormBuilder,
+    private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService) { }
+
+    showFailure(){
+        this.toastr.error('Invalid User or Password.', 'Error', { timeOut: 6000 } )
+      }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -39,10 +45,13 @@ get f() { return this.loginForm.controls; }
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                        window.location.reload()
+                        this.router.navigateByUrl('/main');
                 },
                 error => {
-                    console.log(error);
+                    if(error.error == "Invalid User"){
+                        this.showFailure();
+                    }
                 });
     }
 

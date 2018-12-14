@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import  APIService from '../_services/api.service';
+import { ToastrService } from 'ngx-toastr';
+import {AbstractControl} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -9,10 +11,9 @@ import  APIService from '../_services/api.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  submitted = false;
   registerForm: FormGroup;
-
-  constructor( private formBuilder: FormBuilder, private apiService : APIService,  private router: Router) { }
+  constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private apiService : APIService,  private router: Router) { }
 
   ngOnInit() {
     //takes data from the form and validates the inputs
@@ -21,16 +22,38 @@ export class RegisterComponent implements OnInit {
       osuId: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+      confirmPassword: ['', Validators.required]
+  },{
+      validator: this.MatchPassword
   });
-  
   }
 
+  MatchPassword(AC: AbstractControl) {
+    let password = AC.get('password').value; // to get value in input tag
+    let confirmPassword = AC.get('confirmPassword').value; // to get value in input tag
+     if(password != confirmPassword) {
+         console.log('false');
+         AC.get('confirmPassword').setErrors( {MatchPassword: true} )
+     } else {
+         console.log('true');
+         return null
+     }
+ }
+  
   // convenience getter for easy access to form fields
-    get f() { return this.registerForm.controls; }
+  get f() { return this.registerForm.controls; }
+
+
+  showFailure(){
+    this.toastr.error('Username or email are already taken.', 'Error', { timeOut: 6000 } )
+  }
+
+  showSuccess() {
+    this.toastr.success('Please log in using your credentials.', 'Success!', { timeOut: 6000 } );
+  }
 
   onSubmit(){
-
+  this.submitted = true;
   //if the registration is invalid, it voids out
   if (this.registerForm.invalid) {
       return;
@@ -40,7 +63,16 @@ export class RegisterComponent implements OnInit {
    this.apiService.registerUser(this.registerForm.value)
     .subscribe(
       data => {
-        this.router.navigate(['/login'])
+        var response = JSON.parse(data);
+        if(response.userExists){
+          this.showSuccess();
+          this.router.navigate(['/login'])
+        }
+        else
+        {
+          this.showFailure();
+          return;
+        }
       },
       error => {
         console.log(error);

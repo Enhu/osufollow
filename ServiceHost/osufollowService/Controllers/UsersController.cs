@@ -12,6 +12,8 @@ using System.Web.Http.Description;
 using osufollowService.Data;
 using osufollowService.Filters;
 using osufollowUser.Models;
+using osufollowService.Helpers;
+using Newtonsoft.Json;
 
 namespace osufollowService.Controllers
 {
@@ -76,20 +78,31 @@ namespace osufollowService.Controllers
         }
 
         // POST: api/Users
+        //registers the user
         [AllowAnonymous]
         [ResponseType(typeof(User))]
-        [Route("api/users/register")]
+        [Route("api/users/register", Name = "RegisterUser")]
         public async Task<IHttpActionResult> PostUser(User user)
         {
+            string json;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.User.Add(user);
-            await db.SaveChangesAsync();
+            var v = db.User.Where(a => a.Username.Equals(user.Username) || a.Email.Equals(user.Email)).FirstOrDefault();
 
-            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+            if (v == null)
+            {
+                user.Password = PasswordHashing.HashPassword(user.Password);
+
+                db.User.Add(user);
+                await db.SaveChangesAsync();
+                json = JsonConvert.SerializeObject(new { userExists = true });
+                return Ok(json);
+            }
+            json = JsonConvert.SerializeObject(new { userExists = false });
+            return Ok(json);
         }
 
         // DELETE: api/Users/5
@@ -121,5 +134,7 @@ namespace osufollowService.Controllers
         {
             return db.User.Count(e => e.Id == id) > 0;
         }
+
+
     }
 }

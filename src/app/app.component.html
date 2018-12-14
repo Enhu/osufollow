@@ -7,16 +7,21 @@
     <div class="form-inline">
       <div class="md-form my-0">
         <input #box (keyup.enter)="onEnter(box.value)" class="form-control mr-sm-2" type="search" placeholder="Enter username" aria-label="Search">
-        <button class="btn btn-outline-success mr-sm-2 my-2 my-sm-0" type="submit">Search</button>
+        <button (click)="onEnter(box.value)" class="btn btn-outline-success mr-sm-2 my-2 my-sm-0" type="submit">Search</button>
       </div>
     </div>
   </div>
   <ul class="nav justify-content-end grey" *ngIf="loggedIn">
     <li class="nav-item">
+      <button type="button" class="btn btn-primary">
+            Notifications <span class="badge badge-light">0</span>
+      </button>
+    </li>
+    <li class="nav-item">
       <a href="/profile/" class="nav-link" >Profile</a>
     </li>
     <li class="nav-item">
-      <a href="#" (click)="logout()" class="nav-link" >Logout</a>
+      <a href="" (click)="logout()" class="nav-link" >Logout</a>
     </li>
   </ul>
   <ul class="nav justify-content-end grey" *ngIf="!loggedIn">

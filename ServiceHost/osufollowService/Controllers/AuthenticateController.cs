@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using osufollowService.Helpers;
 
 namespace osufollowService.Controllers
 {
@@ -20,7 +21,7 @@ namespace osufollowService.Controllers
         {
             if (CheckUser(username, password))
             {
-                return Request.CreateResponse(HttpStatusCode.OK, JwtManager.GenerateToken(username), Configuration.Formatters.JsonFormatter);
+                return Request.CreateResponse(HttpStatusCode.OK, new Response(JwtManager.GenerateToken(username),username), Configuration.Formatters.JsonFormatter);
 
             }
 
@@ -29,14 +30,30 @@ namespace osufollowService.Controllers
 
         public bool CheckUser(string userName, string password)
         {
-            var v = db.User.Where(a => a.Username.Equals(userName) && a.Password.Equals(password)).FirstOrDefault();
+            var v = db.User.Where(a => a.Username.Equals(userName)).FirstOrDefault();
 
-            if (v == null)
+            if (v != null)
             {
-                return false;
+                if (PasswordHashing.ValidatePassword(password, v.Password))
+                {
+                    return true;
+                };
             }
 
-            return true;
+            return false;
+            
+        }
+    }
+
+    public class Response
+    {
+        public string token { get; set; }
+        public string user { get; set; }
+
+        public Response(string token, string user)
+        {
+            this.token = token;
+            this.user = user;
         }
     }
 }

@@ -3,5 +3,4 @@ export class User {
     email: string;
     password: string;
     osuId: string;
-    confirmPassword: string;
 }

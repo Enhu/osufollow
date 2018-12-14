@@ -33,15 +33,20 @@ export class AuthenticationService {
         }
         return this.http.post<any>(`${configJson.DATABASE_API_URL}/authenticate/login`,null,httpOptions)
             .pipe(map(user => {
+                console.log(user);
                 // login successful if there's a jwt token in the response
-                if (user) {
+                if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }
 
                 return user;
-            }));
+            },
+            error => { 
+                //console.log(error)
+            }
+            ));
     }
 
     logout() {
