@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService, private globals: Globals, private router:Router) {
     this.role = globals.role;
     this.loginInfo = globals.loginInfo;
-    debugger
     if(this.authenticationService.currentUserValue){
       this.loggedIn = true;
     }

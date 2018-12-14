@@ -42,7 +42,6 @@ getUserById(id: number) {
 }
 
 registerUser (user: User): Observable<User>{
-    debugger;
     return this.httpClient.post<User>(`${configJson.DATABASE_API_URL}/users/register`, user)
 }
 

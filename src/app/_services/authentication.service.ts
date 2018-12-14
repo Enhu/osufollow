@@ -31,11 +31,8 @@ export class AuthenticationService {
                 .set('username',username)
                 .set('password',password)
         }
-        //console.log(this.http.post<any>(`${configJson.DATABASE_API_URL}/authenticate/login`,null,httpOptions))
-        debugger
         return this.http.post<any>(`${configJson.DATABASE_API_URL}/authenticate/login`,null,httpOptions)
             .pipe(map(user => {
-                debugger
                 // login successful if there's a jwt token in the response
                 if (user) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes

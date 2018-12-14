@@ -30,8 +30,7 @@ export class LoginComponent implements OnInit {
 
 get f() { return this.loginForm.controls; }
 
-    onSubmit() {
-        debugger
+    onSubmit() {   
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
@@ -40,8 +39,6 @@ get f() { return this.loginForm.controls; }
             .pipe(first())
             .subscribe(
                 data => {
-                    debugger;
-                    console.log(data);
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
