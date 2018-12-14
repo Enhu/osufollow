@@ -1,9 +1,9 @@
-th, table , h1, div{
+th, table , h1{
 
     color: white;
 }
 
-h5, p, a {
+h5, p, a , th{
     color: black
 }
 .panel-body {
@@ -12,4 +12,14 @@ h5, p, a {
 
 body {
     padding-top: 40px;
+}
+
+div {
+    color: black;
+    font-weight: bold;
+    text-align: left;
+}
+
+#username {
+    text-align: center;
 }

@@ -2,15 +2,23 @@
 <body>
     <div class="container">
         
-        <div class="panel-heading"><h4 class="panal-title" style="text-align:center">General Stats</h4></div>
+        <div class="panel-heading"><h4 class="panal-title" style="text-align:center; color: white">General Stats</h4></div>
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm" style="text-align:center">
-                    <div class="panel-body"> 
-                        <img [src]="avatarUrl" height="200" *ngIf="avatarUrl">
-                    </div>
-                    <div *ngFor="let user of users">
-                        {{ user.username }}
+
+                    <div class="card"> 
+                        <h5 class="card-header">Player</h5>
+                        <div class="card-body">
+
+                            <img [src]="avatarUrl" height="200" *ngIf="avatarUrl">
+
+  
+                            <div class="col-sm" *ngFor="let user of users" id="username">
+                                Username
+                                {{ user.username }}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -18,7 +26,11 @@
                     <div class="card">
                         <h5 class="card-header">User Overall</h5>
                         <div class="card-body">
-                           
+                            <div style="color:black" >Ranking</div>
+                            <div style="color:black">Performance Points</div>
+                            <div style="color:black">Overall Accuracy</div>  
+                            <div style="color:black">Country</div>
+                            <div style="color:black">Total Playcount</div>
                         </div>
                     </div>
                 </div>
