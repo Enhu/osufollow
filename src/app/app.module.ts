@@ -9,9 +9,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { StatsComponent } from './stats/stats.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from  '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from  '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import APIService from './api.service';
+import APIService from './_services/api.service';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import APIService from './api.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [APIService],
+  providers: [APIService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

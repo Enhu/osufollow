@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Globals} from './globals';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthenticationService } from './_services/authentication.service';
+import { User } from './_models/user';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,10 +14,15 @@ export class AppComponent implements OnInit {
 
   private role: string;
   private loginInfo: [String, number];
+  loggedIn : boolean;
 
-  constructor(private globals: Globals, private router:Router) {
+  constructor(private authenticationService: AuthenticationService, private globals: Globals, private router:Router) {
     this.role = globals.role;
     this.loginInfo = globals.loginInfo;
+    if(this.authenticationService.currentUserValue){
+      this.loggedIn = true;
+    }
+    
   }
 
   value = '';
@@ -35,6 +43,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     console.log(this.role);  
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/']);
+    this.loggedIn = false;
   }
 
 }

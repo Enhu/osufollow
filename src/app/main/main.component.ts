@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { $ } from 'protractor';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({
   selector: 'app-main',
@@ -10,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
     
-  constructor(private router:Router){}
+  constructor(private router:Router){
+   
+  }
 
   value = '';
   onEnter(value: string) { 
@@ -21,6 +22,8 @@ export class MainComponent implements OnInit {
   goStats(){
     this.router.navigate(['/stats'], { queryParams: { id: this.value}});
   }
+
+  
 
   ngOnInit() {
      

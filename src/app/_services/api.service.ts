@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from  '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as configJson from './config.json';
-import {User} from './_models/user';
+import * as configJson from '../config.json';
+import {User} from '../_models/user';
 import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
@@ -42,8 +42,7 @@ getUserById(id: number) {
 }
 
 registerUser (user: User): Observable<User>{
-    debugger;
-    return this.httpClient.post<User>(`${configJson.DATABASE_API_URL}/Users`, user)
+    return this.httpClient.post<User>(`${configJson.DATABASE_API_URL}/users/register`, user)
 }
 
 updateUser(user: User) {
