@@ -1,4 +1,6 @@
+<script>
 
+</script>
 <body>
     <div class="container">
         
@@ -10,27 +12,45 @@
                     <div class="card"> 
                         <h5 class="card-header">Player</h5>
                         <div class="card-body">
+                            
+                            <div class="row">
+                                <div class="col-sm" id="avatar">
+                                    <img [src]="avatarUrl" height="200" *ngIf="avatarUrl">
+                                    <div class="col-sm" id="username" *ngFor="let user of users"> {{ user.username }}</div>
+                                </div>
+                                <div class="col-sm" id="userdata">
+                                    Country <br> <br>
+                                    Rank     <br> <br>
+                                    PP
+                                </div>
+                                <div class="col-sm" *ngFor="let user of users" id="userdata">
+                                    {{ user.country }} <br><br>
+                                    #{{ user.pp_rank }}  <br><br>
+                                    {{ user.pp_raw }}
+                                </div>
 
-                            <img [src]="avatarUrl" height="200" *ngIf="avatarUrl">
 
-  
-                            <div class="col-sm" *ngFor="let user of users" id="username">
-                                Username
-                                {{ user.username }}
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm" style="text-align:center">
+                <div class="col-sm">
                     <div class="card">
                         <h5 class="card-header">User Overall</h5>
                         <div class="card-body">
-                            <div style="color:black" >Ranking</div>
-                            <div style="color:black">Performance Points</div>
-                            <div style="color:black">Overall Accuracy</div>  
-                            <div style="color:black">Country</div>
-                            <div style="color:black">Total Playcount</div>
+                            <div class="row">
+                                <div class="col-sm" id="usergeneraldata">
+                                    Overall Accuracy  <br><br>
+                                    Total Playcount
+                                </div>
+
+                                <div class="col-sm" *ngFor="let user of users" id="usergeneraldata">
+                                    %{{ user.accuracy.substring(0,5) }} <br><br>
+                                    {{ user.playcount }}  
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
