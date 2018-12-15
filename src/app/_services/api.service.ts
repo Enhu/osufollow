@@ -37,8 +37,8 @@ getUsers(){
       });
 }
 
-getUserById(id: number) {
-    return this.httpClient.get(`${configJson.DATABASE_API_URL}/Users/${id}`);
+getUserByUsername(username: string) {
+    return this.httpClient.get(`${configJson.DATABASE_API_URL}/Users/${username}`);
 }
 
 registerUser (user: User): Observable<string>{
@@ -46,7 +46,7 @@ registerUser (user: User): Observable<string>{
 }
 
 updateUser(user: User) {
-    return this.httpClient.put(`${configJson.DATABASE_API_URL}/Users/${user.username}`, user);
+    return this.httpClient.put(`${configJson.DATABASE_API_URL}/Users/update?username=${user.username}`, user);
 }
 
 deleteUser(id: number) {

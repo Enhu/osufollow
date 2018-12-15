@@ -52,7 +52,6 @@
 						<input class="input100" type="password" formControlName="confirmPassword" placeholder="Confirm password" [ngClass]="{ 'form-control is-invalid': submitted && f.confirmPassword.errors }" >
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 						<div *ngIf="submitted && f.confirmPassword.errors" class="invalid-tooltip">
-								<div *ngIf="f.confirmPassword.errors.required">This field is required.</div>
 								<div *ngIf="f.confirmPassword.errors?.MatchPassword">Password doesn't match.</div>
 							</div>
 					</div>

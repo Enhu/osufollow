@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -28,12 +28,13 @@ namespace osufollowService.Controllers
             return db.User;
         }
 
-        // GET: api/Users/5
+    // GET: api/Users/5
+        [JwtAuthentication]
         [ResponseType(typeof(User))]
-        [AllowAnonymous]
-        public async Task<IHttpActionResult> GetUser(int id)
+        public IHttpActionResult GetUser(string username)
         {
-            User user = await db.User.FindAsync(id);
+            User user = db.User.Where(a => a.Username.Equals(username)).FirstOrDefault();
+
             if (user == null)
             {
                 return NotFound();
@@ -42,44 +43,36 @@ namespace osufollowService.Controllers
             return Ok(user);
         }
 
-        // PUT: api/Users/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutUser(int id, User user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+    // PUT: api/Users/5
+    [JwtAuthentication]
+    [Route("api/users/update", Name = "UpdateUser")]
+    [ResponseType(typeof(void))]
+    public IHttpActionResult PutUser(string username, User user)
+    {
+      if (!ModelState.IsValid)
+      {
+        return BadRequest(ModelState);
+      }
 
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
+      var v = db.User.SingleOrDefault(a => a.Username == username);
 
-            db.Entry(user).State = EntityState.Modified;
+      if (v != null)
+      {
+        v.Password = PasswordHashing.HashPassword(user.Password);
+        v.OsuId = user.OsuId;
+        v.Email = user.Email;
+        db.SaveChanges();
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        return StatusCode(HttpStatusCode.NoContent);
+      }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
 
-        // POST: api/Users
-        //registers the user
-        [AllowAnonymous]
+      return NotFound(); 
+    }
+
+    // POST: api/Users
+    //registers the user
+    [AllowAnonymous]
         [ResponseType(typeof(User))]
         [Route("api/users/register", Name = "RegisterUser")]
         public async Task<IHttpActionResult> PostUser(User user)
@@ -130,10 +123,17 @@ namespace osufollowService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserExists(int id)
+        private bool UserExists(string username)
         {
-            return db.User.Count(e => e.Id == id) > 0;
-        }
+            var v = db.User.Where(a => a.Username.Equals(username)).FirstOrDefault();
+
+            if (v == null)
+            {
+                return false;
+            }
+
+        return true;
+    }
 
 
     }
