@@ -6,6 +6,12 @@
   
   /*//////////////////////////////////////////////////////////////////
   [ RESTYLE TAG ]*/
+
+  .avatar{
+    width: 128px;
+    height: 128px;
+  }
+
   .loader {
     border: 4px solid #f3f3f3; /* Light grey */
     border-top: 4px solid #3498db; /* Blue */
@@ -361,7 +367,7 @@
     min-width: 160px;
     height: 42px;
     border-radius: 21px;
-  
+    
     background: #d41872;
     background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
     background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
@@ -374,6 +380,7 @@
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
     transition: all 0.4s;
+    
   }
   
   .login100-form-btn::before {

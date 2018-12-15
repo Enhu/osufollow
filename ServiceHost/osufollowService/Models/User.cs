@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,9 +19,10 @@ namespace osufollowUser.Models
 
         [Required, DataType(DataType.Password)]
         public string Password { get; set; }
-
+        
         public string OsuId { get; set; }
+        
+        public string Avatar { get; set; }
 
-
-    }
+  }
 }

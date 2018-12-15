@@ -397,3 +397,5 @@ C:\GitHub\osufollowApp\ServiceHost\osufollowService\obj\Debug\osufollowService.c
 C:\GitHub\osufollowApp\ServiceHost\osufollowService\obj\Debug\osufollowService.csproj.CopyComplete
 C:\GitHub\osufollowApp\ServiceHost\osufollowService\obj\Debug\osufollowService.dll
 C:\GitHub\osufollowApp\ServiceHost\osufollowService\obj\Debug\osufollowService.pdb
+C:\GitHub\osufollowApp\ServiceHost\osufollowService\obj\Debug\osufollowService.Migrations.AddAvatar.resources
+C:\GitHub\osufollowApp\ServiceHost\osufollowService\obj\Debug\osufollowService.Migrations.AvatarAsString.resources

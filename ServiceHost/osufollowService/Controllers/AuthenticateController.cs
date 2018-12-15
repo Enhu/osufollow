@@ -23,7 +23,7 @@ namespace osufollowService.Controllers
             if (CheckUser(username, password))
             {
                var v = db.User.Where(a => a.Username.Equals(username)).FirstOrDefault();
-               return Request.CreateResponse(HttpStatusCode.OK, new Response(JwtManager.GenerateToken(username),v.Username,v.Email, v.OsuId), Configuration.Formatters.JsonFormatter);
+               return Request.CreateResponse(HttpStatusCode.OK, new Response(JwtManager.GenerateToken(username),v.Username,v.Email, v.OsuId, v.Avatar, v.Password), Configuration.Formatters.JsonFormatter);
 
             }
 
@@ -49,17 +49,21 @@ namespace osufollowService.Controllers
 
     public class Response
     {
-        public string token { get; set; }
-        public string user { get; set; }
-        public string email { get; set; }
-        public string osuId { get; set; }
+        public string Token { get; set; }
+        public string User { get; set; }
+        public string Email { get; set; }
+        public string OsuId { get; set; }
+        public string Avatar { get; set; }
+        public string Password { get; set; }
 
-        public Response(string token, string user, string email, string osuId)
+      public Response(string token, string user, string email, string osuId, string avatar, string password)
         {
-            this.token = token;
-            this.user = user;
-            this.email = email;
-            this.osuId = osuId;
+            this.Token = token;
+            this.User = user;
+            this.Email = email;
+            this.OsuId = osuId;
+            this.Avatar = avatar;
+            this.Password = password;
         }
     }
 }

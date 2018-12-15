@@ -4,7 +4,15 @@
       <span class="login100-form-title p-b-41">
         Profile Details
       </span>
+
+      <div>
+          <input type="file" (change)="previewImage($event)">
+          <img [src]="imageSrc" class="avatar" />
+          <span class="focus-input100"></span>
+      </div>
+      
       <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="login100-form validate-form p-b-33 p-t-5">
+              
         <div class="wrap-input100 validate-input" data-validate = "Username">
           <input [(ngModel)]="username" class="input100" type="text" formControlName="username" placeholder="Username">
           <span class="focus-input100" data-placeholder="&#xe82a;"></span>
@@ -24,7 +32,7 @@
           </div>
 
           <div class="wrap-input100 validate-input" data-validate = "Password">
-          <input class="input100" type="password" formControlName="password" placeholder="Password" [ngClass]="{ 'form-control is-invalid': submitted && f.password.errors }">
+          <input [(ngModel)]="password" class="input100" type="password" formControlName="password" placeholder="Password" [ngClass]="{ 'form-control is-invalid': submitted && f.password.errors }">
           <span class="focus-input100" data-placeholder="&#xe80f;"></span>
           <div *ngIf="submitted && f.password.errors" class="invalid-tooltip">
             <div *ngIf="f.password.errors.required">This field is required.</div>
@@ -33,13 +41,12 @@
         </div>
 
         <div class="wrap-input100 validate-input" data-validate="Confirm password">
-          <input class="input100" type="password" formControlName="confirmPassword" placeholder="Confirm password" [ngClass]="{ 'form-control is-invalid': submitted && f.confirmPassword.errors }">
+          <input [(ngModel)]="confirmPassword" class="input100" type="password" formControlName="confirmPassword" placeholder="Confirm password" [ngClass]="{ 'form-control is-invalid': submitted && f.confirmPassword.errors }">
           <span class="focus-input100" data-placeholder="&#xe80f;"></span>
           <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-tooltip">
             <div *ngIf="f.confirmPassword.errors?.MatchPassword">Password doesn't match.</div>
           </div>
-        </div>
-
+        </div>        
         <div class="container-login100-form-btn m-t-32"> <div *ngIf="loading" class="loader"></div> 
           <button class="login100-form-btn">
             Save Changes
@@ -49,3 +56,4 @@
     </div>
   </div>
 </div>
+

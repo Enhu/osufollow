@@ -230,6 +230,14 @@
     <Compile Include="Migrations\201812141424088_DeleteConfirmPassword.Designer.cs">
       <DependentUpon>201812141424088_DeleteConfirmPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812150339051_AddAvatar.cs" />
+    <Compile Include="Migrations\201812150339051_AddAvatar.Designer.cs">
+      <DependentUpon>201812150339051_AddAvatar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812151449329_AvatarAsString.cs" />
+    <Compile Include="Migrations\201812151449329_AvatarAsString.Designer.cs">
+      <DependentUpon>201812151449329_AvatarAsString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -238,7 +246,9 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="LICENSE.txt" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -279,6 +289,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812141424088_DeleteConfirmPassword.resx">
       <DependentUpon>201812141424088_DeleteConfirmPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812150339051_AddAvatar.resx">
+      <DependentUpon>201812150339051_AddAvatar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812151449329_AvatarAsString.resx">
+      <DependentUpon>201812151449329_AvatarAsString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

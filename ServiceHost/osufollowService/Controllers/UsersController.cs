@@ -58,9 +58,22 @@ namespace osufollowService.Controllers
 
       if (v != null)
       {
-        v.Password = PasswordHashing.HashPassword(user.Password);
-        v.OsuId = user.OsuId;
-        v.Email = user.Email;
+        if(v.Password != user.Password)
+        {
+          v.Password = PasswordHashing.HashPassword(user.Password);
+        }
+        if(v.OsuId != user.OsuId)
+        {
+          v.OsuId = user.OsuId;
+        }
+        if(v.Email != user.Email)
+        {
+          v.Email = user.Email;
+        }
+        if(v.Avatar != user.Avatar)
+        {
+          v.Avatar = user.Avatar;
+        }
         db.SaveChanges();
 
         return StatusCode(HttpStatusCode.NoContent);
