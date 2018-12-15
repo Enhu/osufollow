@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import * as configJson from '../config.json';
 import {User} from '../_models/user';
 import { catchError, retry } from 'rxjs/operators';
+import { Follow } from '../_models/follow.js';
 
 @Injectable({
   providedIn: 'root'
@@ -52,4 +53,13 @@ updateUser(user: User) {
 deleteUser(id: number) {
     return this.httpClient.delete(`${configJson.DATABASE_API_URL}/Users/${id}`);
 }
+
+followOsuUser(follow: Follow){
+    return this.httpClient.post<string>(`${configJson.DATABASE_API_URL}/follows`, follow)
+}
+
+stopFollowingPlayer(playerName: string){
+    return this.httpClient.delete(`${configJson.DATABASE_API_URL}/follows?playername=${playerName}`)
+}
+
 }

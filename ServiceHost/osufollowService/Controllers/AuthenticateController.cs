@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using osufollowService.Helpers;
+using osufollowService.Models;
 
 namespace osufollowService.Controllers
 {
@@ -22,8 +23,11 @@ namespace osufollowService.Controllers
             
             if (CheckUser(username, password))
             {
-               var v = db.User.Where(a => a.Username.Equals(username)).FirstOrDefault();
-               return Request.CreateResponse(HttpStatusCode.OK, new Response(JwtManager.GenerateToken(username),v.Username,v.Email, v.OsuId, v.Avatar, v.Password), Configuration.Formatters.JsonFormatter);
+               var dbUser = db.User.Where(a => a.Username.Equals(username)).FirstOrDefault();
+               var follows = new List<Follow>();
+
+               follows = db.Follow.Where(x => x.Username == username).ToList();
+               return Request.CreateResponse(HttpStatusCode.OK, new Response(JwtManager.GenerateToken(username), dbUser.Username, dbUser.Email, dbUser.OsuId, dbUser.Avatar, dbUser.Password, follows), Configuration.Formatters.JsonFormatter);
 
             }
 
@@ -32,11 +36,11 @@ namespace osufollowService.Controllers
 
         public bool CheckUser(string userName, string password)
         {
-            var v = db.User.Where(a => a.Username.Equals(userName)).FirstOrDefault();
+            var dbUser = db.User.Where(a => a.Username.Equals(userName)).FirstOrDefault();
 
-            if (v != null)
+            if (dbUser != null)
             {
-                if (PasswordHashing.ValidatePassword(password, v.Password))
+                if (PasswordHashing.ValidatePassword(password, dbUser.Password))
                 {
                     return true;
                 };
@@ -49,14 +53,16 @@ namespace osufollowService.Controllers
 
     public class Response
     {
-        public string Token { get; set; }
+
+    public string Token { get; set; }
         public string User { get; set; }
         public string Email { get; set; }
         public string OsuId { get; set; }
         public string Avatar { get; set; }
         public string Password { get; set; }
+        public List<Follow> Follows { get; set; }
 
-      public Response(string token, string user, string email, string osuId, string avatar, string password)
+      public Response(string token, string user, string email, string osuId, string avatar, string password, List<Follow> follows)
         {
             this.Token = token;
             this.User = user;
@@ -64,7 +70,9 @@ namespace osufollowService.Controllers
             this.OsuId = osuId;
             this.Avatar = avatar;
             this.Password = password;
+            this.Follows = follows;
         }
-    }
+
+  }
 }
 

@@ -399,3 +399,5 @@ C:\GitHub\osufollowApp\ServiceHost\osufollowService\obj\Debug\osufollowService.d
 C:\GitHub\osufollowApp\ServiceHost\osufollowService\obj\Debug\osufollowService.pdb
 C:\GitHub\osufollowApp\ServiceHost\osufollowService\obj\Debug\osufollowService.Migrations.AddAvatar.resources
 C:\GitHub\osufollowApp\ServiceHost\osufollowService\obj\Debug\osufollowService.Migrations.AvatarAsString.resources
+C:\GitHub\osufollowApp\ServiceHost\osufollowService\obj\Debug\osufollowService.Migrations.FollowTable.resources
+C:\GitHub\osufollowApp\ServiceHost\osufollowService\obj\Debug\osufollowService.Migrations.AvatarIsRequired.resources

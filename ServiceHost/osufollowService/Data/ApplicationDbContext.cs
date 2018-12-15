@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using osufollowUser.Models;
+using osufollowService.Models;
 
 namespace osufollowService.Data
 {
@@ -21,6 +22,7 @@ namespace osufollowService.Data
 
        
        public DbSet<User> User { get; set; }
+       public DbSet<Follow> Follow { get; set; }
         
         
     }

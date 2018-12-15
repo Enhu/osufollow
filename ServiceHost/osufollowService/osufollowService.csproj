@@ -183,6 +183,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
+    <Compile Include="Controllers\FollowsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="Filters\AddChallengeOnUnauthorizedResult.cs" />
@@ -238,7 +239,16 @@
     <Compile Include="Migrations\201812151449329_AvatarAsString.Designer.cs">
       <DependentUpon>201812151449329_AvatarAsString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812151752176_FollowTable.cs" />
+    <Compile Include="Migrations\201812151752176_FollowTable.Designer.cs">
+      <DependentUpon>201812151752176_FollowTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812152045070_AvatarIsRequired.cs" />
+    <Compile Include="Migrations\201812152045070_AvatarIsRequired.Designer.cs">
+      <DependentUpon>201812152045070_AvatarIsRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -295,6 +305,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812151449329_AvatarAsString.resx">
       <DependentUpon>201812151449329_AvatarAsString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812151752176_FollowTable.resx">
+      <DependentUpon>201812151752176_FollowTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812152045070_AvatarIsRequired.resx">
+      <DependentUpon>201812152045070_AvatarIsRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,7 +3,7 @@
 </script>
 <body>
     <div class="container">
-        
+        <input (click)="followOrUnfollowUser()" *ngIf="loggedIn" class="btn btn-primary" type="button" [(ngModel)]="buttonValue">
         <div class="panel-heading"><h4 class="panal-title" style="text-align:center; color: white">General Stats</h4></div>
         <div class="panel-body">
             <div class="row">

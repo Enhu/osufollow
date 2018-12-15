@@ -54,25 +54,25 @@ namespace osufollowService.Controllers
         return BadRequest(ModelState);
       }
 
-      var v = db.User.SingleOrDefault(a => a.Username == username);
+      var dbUser = db.User.SingleOrDefault(a => a.Username == username);
 
-      if (v != null)
+      if (dbUser != null)
       {
-        if(v.Password != user.Password)
+        if(dbUser.Password != user.Password)
         {
-          v.Password = PasswordHashing.HashPassword(user.Password);
+          dbUser.Password = PasswordHashing.HashPassword(user.Password);
         }
-        if(v.OsuId != user.OsuId)
+        if(dbUser.OsuId != user.OsuId)
         {
-          v.OsuId = user.OsuId;
+          dbUser.OsuId = user.OsuId;
         }
-        if(v.Email != user.Email)
+        if(dbUser.Email != user.Email)
         {
-          v.Email = user.Email;
+          dbUser.Email = user.Email;
         }
-        if(v.Avatar != user.Avatar)
+        if(dbUser.Avatar != user.Avatar)
         {
-          v.Avatar = user.Avatar;
+          dbUser.Avatar = user.Avatar;
         }
         db.SaveChanges();
 
@@ -96,9 +96,9 @@ namespace osufollowService.Controllers
                 return BadRequest(ModelState);
             }
 
-            var v = db.User.Where(a => a.Username.Equals(user.Username) || a.Email.Equals(user.Email)).FirstOrDefault();
+            var dbUser = db.User.Where(a => a.Username.Equals(user.Username) || a.Email.Equals(user.Email)).FirstOrDefault();
 
-            if (v == null)
+            if (dbUser == null)
             {
                 user.Password = PasswordHashing.HashPassword(user.Password);
 
@@ -138,9 +138,9 @@ namespace osufollowService.Controllers
 
         private bool UserExists(string username)
         {
-            var v = db.User.Where(a => a.Username.Equals(username)).FirstOrDefault();
+            var dbUser = db.User.Where(a => a.Username.Equals(username)).FirstOrDefault();
 
-            if (v == null)
+            if (dbUser == null)
             {
                 return false;
             }
