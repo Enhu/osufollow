@@ -16,10 +16,36 @@ body {
 
 div {
     color: black;
-    font-weight: bold;
     text-align: left;
 }
 
+img{
+    border-radius: 10%;
+}
+
+#userdata {
+    padding-left: 10px;
+    padding-top: 30px;
+    font-weight: bold;
+}
+
 #username {
+    padding-left: 10px;
+    font-weight: bold; 
     text-align: center;
+}
+
+#usergeneraldata{
+    padding-left: 10px;
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+.col-sm {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.card {
+    background-image: url("src/assets/img/cardbg.png");
+    font-size: 20px;
 }
