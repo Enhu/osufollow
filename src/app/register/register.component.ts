@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     //takes data from the form and validates the inputs
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
-      osuId: ['', Validators.required],
+      osuId: [''],
       email: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]

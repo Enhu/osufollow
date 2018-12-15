@@ -1,4 +1,4 @@
-﻿using osufollowService.Data;
+using osufollowService.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +19,11 @@ namespace osufollowService.Controllers
         [Route("api/authenticate/login")]
         public HttpResponseMessage LogIn(string username, string password)
         {
+            
             if (CheckUser(username, password))
             {
-                return Request.CreateResponse(HttpStatusCode.OK, new Response(JwtManager.GenerateToken(username),username), Configuration.Formatters.JsonFormatter);
+               var v = db.User.Where(a => a.Username.Equals(username)).FirstOrDefault();
+               return Request.CreateResponse(HttpStatusCode.OK, new Response(JwtManager.GenerateToken(username),v.Username,v.Email, v.OsuId), Configuration.Formatters.JsonFormatter);
 
             }
 
@@ -49,11 +51,15 @@ namespace osufollowService.Controllers
     {
         public string token { get; set; }
         public string user { get; set; }
+        public string email { get; set; }
+        public string osuId { get; set; }
 
-        public Response(string token, string user)
+        public Response(string token, string user, string email, string osuId)
         {
             this.token = token;
             this.user = user;
+            this.email = email;
+            this.osuId = osuId;
         }
     }
 }
