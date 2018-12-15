@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../_services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
+import {AbstractControl} from '@angular/forms';
 import APIService from  '../_services/api.service';
 
 @Component({
@@ -42,19 +43,33 @@ export class ProfileComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
-    }); 
+    },{
+      validator: this.MatchPassword
+  }); 
 
     this.profileForm.controls['username'].disable();
     
   }
   
+  MatchPassword(AC: AbstractControl) {
+    let password = AC.get('password').value; 
+    let confirmPassword = AC.get('confirmPassword').value;
+     if(password != confirmPassword) {
+         AC.get('confirmPassword').setErrors( {MatchPassword: true} )
+     } else {
+        AC.get('confirmPassword').setErrors(null)
+        return null
+     }
+ }
+
   showSuccess() {
     this.toastr.success('Please log in again using your new credentials.', 'Success!', { timeOut: 6000 } );
   }
 
   get f() { return this.profileForm.controls; }
 
-  onSubmit() {   
+  onSubmit() {
+    this.submitted = true;   
     // stop here if form is invalid
     if (this.profileForm.invalid) {
         return;

@@ -16,18 +16,28 @@
           </div>
                   
           <div class="wrap-input100 validate-input" data-validate = "Email">
-          <input [(ngModel)]="email" class="input100" type="text" formControlName="email" placeholder="Email">
+          <input [(ngModel)]="email" class="input100" type="text" formControlName="email" placeholder="Email"  [ngClass]="{ 'form-control is-invalid': submitted && f.email.errors }">
           <span class="focus-input100" data-placeholder="&#9993;"></span>
+          <div *ngIf="submitted && f.email.errors" class="invalid-tooltip">
+            <div *ngIf="f.email.errors.required">This field is required.</div>
+          </div>
           </div>
 
           <div class="wrap-input100 validate-input" data-validate = "Password">
-          <input class="input100" type="password" formControlName="password" placeholder="Password">
+          <input class="input100" type="password" formControlName="password" placeholder="Password" [ngClass]="{ 'form-control is-invalid': submitted && f.password.errors }">
           <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+          <div *ngIf="submitted && f.password.errors" class="invalid-tooltip">
+            <div *ngIf="f.password.errors.required">This field is required.</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters.</div>
+          </div>
         </div>
 
         <div class="wrap-input100 validate-input" data-validate="Confirm password">
-          <input class="input100" type="password" formControlName="confirmPassword" placeholder="Confirm password">
+          <input class="input100" type="password" formControlName="confirmPassword" placeholder="Confirm password" [ngClass]="{ 'form-control is-invalid': submitted && f.confirmPassword.errors }">
           <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+          <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-tooltip">
+            <div *ngIf="f.confirmPassword.errors?.MatchPassword">Password doesn't match.</div>
+          </div>
         </div>
 
         <div class="container-login100-form-btn m-t-32"> <div *ngIf="loading" class="loader"></div> 
