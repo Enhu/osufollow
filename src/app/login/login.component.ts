@@ -45,7 +45,7 @@ get f() { return this.loginForm.controls; }
             .pipe(first())
             .subscribe(
                 data => {
-                        window.location.reload()
+                        location.reload()
                         this.router.navigateByUrl('/main');
                 },
                 error => {

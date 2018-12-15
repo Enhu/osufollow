@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
     this.loginInfo = globals.loginInfo;
     if(this.authenticationService.currentUserValue){
       this.loggedIn = true;
+    }else{
+      this.loggedIn = false;
     }
     
   }
@@ -49,7 +51,6 @@ export class AppComponent implements OnInit {
     this.authenticationService.logout();
     this.router.navigate(['/']);
     location.reload();
-    this.loggedIn = false;
   }
 
 }
