@@ -3,8 +3,18 @@ th, table , h1{
     color: white;
 }
 
-h5, p, a , th{
+p, a , th, tr{
     color: black
+}
+
+h5 {
+    color: black;
+    text-align: center;
+    font-size: 24px;
+}
+
+td {
+    color: rgb(22, 6, 94)
 }
 .panel-body {
     padding: 15px;
@@ -21,24 +31,44 @@ div {
 
 img{
     border-radius: 10%;
+    width: 180;
+    height: 180;
 }
 
 #userdata {
     padding-left: 10px;
     padding-top: 30px;
     font-weight: bold;
+    font-size: 23px;
 }
 
 #username {
     padding-left: 10px;
     font-weight: bold; 
     text-align: center;
+    font-size: 23px;
 }
 
 #usergeneraldata{
     padding-left: 10px;
     padding-top: 10px;
     font-weight: bold;
+}
+
+#bestScoreFrase{
+    text-align: left;
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+#recentScoreFrase{
+    text-align: left;
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+#table{ 
+    font-size: 15px !important;    
 }
 
 .col-sm {
@@ -49,3 +79,13 @@ img{
     background-image: url("src/assets/img/cardbg.png");
     font-size: 20px;
 }
+
+.col-md-2 {
+    max-width: 120px;
+}
+
+
+.col-md-3 {
+    max-width: 135px;
+}
+
