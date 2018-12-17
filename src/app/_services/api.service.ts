@@ -40,8 +40,8 @@ getUserByUsername(username: string) {
     return this.httpClient.get(`${configJson.DATABASE_API_URL}/Users/${username}`);
 }
 
-registerUser (user: User): Observable<string>{
-    return this.httpClient.post<string>(`${configJson.DATABASE_API_URL}/users/register`, user)
+registerUser (user: User){
+    return this.httpClient.post(`${configJson.DATABASE_API_URL}/users/register`, user)
 }
 
 updateUser(user: User) {

@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
    this.apiService.registerUser(this.registerForm.value)
     .subscribe(
       data => {
-        var response = JSON.parse(data);
+        /*var response = JSON.parse(data);
         if(response.userExists){
           this.showSuccess();
           this.router.navigate(['/login'])
@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
         {
           this.showFailure();
           return;
-        }
+        }*/
       },
       error => {
         console.log(error);

@@ -25,6 +25,10 @@
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/font-awesome/css/util.css",
+              "node_modules/font-awesome/vendor/bootstrap/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/icon-font.min.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [

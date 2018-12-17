@@ -1,6 +1,6 @@
 {
     "API_KEY": "0ca202de6d1c269607b667734418251e5d810a2a",
     "OSU_API_URL": "https://osu.ppy.sh/api",
-    "DATABASE_API_URL": "https://osufollowservice.azurewebsites.net/api"
+    "DATABASE_API_URL": "http://localhost:8080/api"
   }
   
