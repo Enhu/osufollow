@@ -6,8 +6,7 @@ import { AuthenticationService } from '../_services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from '../app.component';
 import {AbstractControl} from '@angular/forms';
-import APIService from  '../_services/api.service';
-import { FileValidator } from '../_helpers/file.validator';
+import {APIService} from  '../_services/api.service';
 
 @Component({
   selector: 'app-profile',

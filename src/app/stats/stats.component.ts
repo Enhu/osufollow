@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import APIService from  '../_services/api.service';
+import {APIService}  from  '../_services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient} from  '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { debug } from 'util';
 import { AuthenticationService } from '../_services/authentication.service';
+import $ from "jquery";
 
 @Component({
   selector: 'app-stats',
@@ -19,9 +20,9 @@ export class StatsComponent implements OnInit {
   loggedIn: boolean = false;
   userParam : string;
   avatarUrl : string;
-  private  users:  Array<object> = [];
-  private  bestScores:  Array<object> = [];
-  private  recentScores : Array<object> = [];
+  users:  Array<object> = [];
+  bestScores:  Array<object> = [];
+  recentScores : Array<object> = [];
   
   constructor(private formBuilder: FormBuilder,
     private toastr: ToastrService, 
@@ -31,17 +32,24 @@ export class StatsComponent implements OnInit {
      private httpClient: HttpClient) { 
   }
 
-  async getUserInfo(){
+  public getUserInfo(){
     this.apiService.getUserInfo(this.userParam).subscribe((data:  Array<object>) => {
         this.users  =  data;
-        this.avatarUrl = 'https://a.ppy.sh/' + data['0']['user_id'];
-        this.getAvatar(this.avatarUrl)
-        this.getUserBest();
-        this.getUserRecent();
+        console.log(this.users);
+        if(this.users.length > 0){
+          this.avatarUrl = 'https://a.ppy.sh/' + data['0']['user_id'];
+          this.getAvatar(this.avatarUrl)
+          this.getUserBest();
+          this.getUserRecent();
+        }else{
+          this.loggedIn = false;
+
+        }
+        
     });
 }
 
-async getBeatmapInfo(beatmapID : string, maxcombo : string, pp : string, rank : string, request : string){
+public getBeatmapInfo(beatmapID : string, maxcombo : string, pp : string, rank : string, request : string){
   this.apiService.getBeatmapInfo(beatmapID).subscribe((data:  Array<object>) => {
     data['0']['maxcombo'] = maxcombo;
     data['0']['pp'] = pp;
@@ -54,7 +62,7 @@ async getBeatmapInfo(beatmapID : string, maxcombo : string, pp : string, rank : 
 });
 }
 
-async getUserBest(){
+public getUserBest(){
   this.apiService.getUserBest(this.userParam).subscribe((data:  Array<object>) => {
     var request = 'best'
     var beatmapID = '';
@@ -71,7 +79,7 @@ async getUserBest(){
 });
 }
 
-async getUserRecent(){
+public getUserRecent(){
   this.apiService.getUserRecent(this.userParam).subscribe((data:  Array<object>) => {
     var request = 'recent';
     var beatmapID = '';
@@ -95,15 +103,16 @@ getAvatar(imageUrl: string): Observable<Blob> {
 
 followOrUnfollowUser(){
   let currentUser =  JSON.parse(localStorage.getItem('currentUser'));
+  let playerName = this.userParam;
   if(this.buttonValue == 'Unfollow user'){
     if(currentUser != null){
-      this.apiService.stopFollowingPlayer(this.userParam).subscribe(
+      this.apiService.stopFollowingPlayer(playerName).subscribe(
       data =>{
         console.log("success");
-        /*$.each(currentUser.follows, function(i, item){
-          if(item.osuFollowedUser == 'Enhu'){
-          delete currentUser.follows[i]
-           }});*/
+        $.each(currentUser.follows, function(i, item){
+          if(item.osuFollowedUser == playerName){
+           currentUser.follows[i]['osuFollowedUser'] = null;
+           }});
         localStorage.setItem('currentUser', JSON.stringify(currentUser))   
         location.reload();
       },
@@ -131,14 +140,19 @@ followOrUnfollowUser(){
 }
 
   ngOnInit() {
+
     let currentUser =  JSON.parse(localStorage.getItem('currentUser'));
     this.userParam  = this.router.snapshot.queryParamMap.get('id');
+    let playerName = this.userParam;
+    
+    if(playerName != null){
+    this.getUserInfo();
 
     if(currentUser != null){
       this.loggedIn = true;
 
       currentUser.follows.forEach(element => {
-        if(element.osuFollowedUser == this.userParam){
+        if(element.osuFollowedUser == playerName){
           this.buttonValue = 'Unfollow user'
         }
       });
@@ -148,8 +162,7 @@ followOrUnfollowUser(){
         osuFollowedUser: this.userParam
      })
     }
-    
-    this.getUserInfo();
+  }
   }
 
 }

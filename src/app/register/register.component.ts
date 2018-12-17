@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import  APIService from '../_services/api.service';
+import { APIService } from '../_services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import {AbstractControl} from '@angular/forms';
 

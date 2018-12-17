@@ -9,7 +9,7 @@ import { Follow } from '../_models/follow.js';
 @Injectable({
   providedIn: 'root'
 })
-export default class  APIService {
+export class APIService {
   constructor(private  httpClient:  HttpClient) {}
 
   //osu! API calls
@@ -17,13 +17,13 @@ export default class  APIService {
       return  this.httpClient.get(`${configJson.OSU_API_URL}/get_user?k=` + configJson.API_KEY + '&u=' + value);
   }
   getUserBest(value: string){
-    return  this.httpClient.get(`${configJson.OSU_API_URL}}/get_user_best?k=` + configJson.API_KEY + '&u=' + value);
+    return  this.httpClient.get(`${configJson.OSU_API_URL}/get_user_best?k=` + configJson.API_KEY + '&u=' + value);
   }
   getUserRecent(value: string){
-    return  this.httpClient.get(`${configJson.OSU_API_URL}}/get_user_recent?k=` + configJson.API_KEY + '&u=' + value);
+    return  this.httpClient.get(`${configJson.OSU_API_URL}/get_user_recent?k=` + configJson.API_KEY + '&u=' + value);
   }
   getBeatmapInfo(value: string){
-    return  this.httpClient.get(`${configJson.OSU_API_URL}}/get_beatmaps?k=` + configJson.API_KEY + '&b=' + value);
+    return  this.httpClient.get(`${configJson.OSU_API_URL}/get_beatmaps?k=` + configJson.API_KEY + '&b=' + value);
   }
 
 
@@ -33,9 +33,7 @@ getAllUsers() : Observable<Array<User>> {
 }
 
 getUsers(){
-    this.httpClient.get('http://localhost:8080/api/Users').subscribe((res : any) => {
-        return res;
-      });
+    return this.httpClient.get(`http://localhost:8080/api/Users`);
 }
 
 getUserByUsername(username: string) {

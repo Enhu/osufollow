@@ -11,6 +11,8 @@ export class AuthGuard implements CanActivate {
         this.toastr.warning('Please log in to continue.', 'Warning', { timeOut: 6000 } )
       }
 
+    show
+
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (localStorage.getItem('currentUser')) {
             // logged in so return true
@@ -23,3 +25,4 @@ export class AuthGuard implements CanActivate {
         return false;
     }
 }
+

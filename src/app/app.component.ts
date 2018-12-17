@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Globals} from './globals';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { interval } from 'rxjs';
 import { Subscription } from 'rxjs';
+import {APIService}   from './_services/api.service';
 import { AuthenticationService } from './_services/authentication.service';
-import { User } from './_models/user';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,11 +15,12 @@ import { User } from './_models/user';
 })
 export class AppComponent implements OnInit {
 
+  recentScores: any;
   private role: string;
   private loginInfo: [String, number];
   loggedIn : boolean;
 
-  constructor(private authenticationService: AuthenticationService, private globals: Globals, private router:Router) {
+  constructor(private toastr: ToastrService, private apiService : APIService, private authenticationService: AuthenticationService, private globals: Globals, private router:Router) {
     this.role = globals.role;
     this.loginInfo = globals.loginInfo;
     if(this.authenticationService.currentUserValue){
@@ -44,7 +48,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(){
-    console.log(this.role);  
+    
   }
 
   logout() {

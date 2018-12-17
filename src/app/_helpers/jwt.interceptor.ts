@@ -12,11 +12,13 @@ export class JwtInterceptor implements HttpInterceptor {
         // add authorization header with jwt token if available
         let currentUser =  JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.token) {
+            if(request.url.indexOf('https://osu.ppy.sh/api/') != 0){
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${currentUser.token}`
                 }
             });
+        }
         }
 
         return next.handle(request);
