@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -14,7 +14,7 @@ namespace osufollowService
 
             config.Filters.Add(new AuthorizeAttribute());
 
-            var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
+            var cors = new EnableCorsAttribute("https://osufollow.herokuapp.com", "*", "*");
             config.EnableCors(cors);
 
             var jsonFormatter = config.Formatters.JsonFormatter;
