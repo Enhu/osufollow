@@ -15,6 +15,7 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthenticationService } from './_services/authentication.service';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AuthenticationService } from './_services/authentication.service';
     ProfileComponent,
     StatsComponent,
     MainComponent,
-    LoginComponent
+    LoginComponent,
+    TestComponent
   ],
   imports: [
     NgbModule,
