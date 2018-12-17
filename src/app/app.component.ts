@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     this.goStats();
   }
   goStats(){
-    if(window.location.href.indexOf('http://localhost:4200/stats') != 0){
+    if(window.location.href.indexOf('https://osufollow.herokuapp.com/stats') != 0){
        //indexOF se usa aca para verificar si
        //pregunta si el indice de algo existe
        //si el index de cierta porcion de la url existe = 0 if not = 1
