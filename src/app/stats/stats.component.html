@@ -1,18 +1,14 @@
-<script>
-
-</script>
 <body>
     <div class="container">
         <input (click)="followOrUnfollowUser()" *ngIf="loggedIn" class="btn btn-primary" type="button" [(ngModel)]="buttonValue">
         <div class="panel-heading"><h4 class="panal-title" style="text-align:center; color: white">General Stats</h4></div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-sm" style="text-align:center">
+                <div class="col-sm">
 
                     <div class="card"> 
                         <h5 class="card-header">Player</h5>
-                        <div class="card-body">
-                            
+                        <div class="card-body" id="cardBody">
                             <div class="row">
                                 <div class="col-sm" id="avatar">
                                     <img [src]="avatarUrl" height="200" *ngIf="avatarUrl">
@@ -28,8 +24,6 @@
                                     #{{ user.pp_rank }}  <br><br>
                                     {{ user.pp_raw }}
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -46,7 +40,7 @@
                                 </div>
 
                                 <div class="col-sm" *ngFor="let user of users" id="usergeneraldata">
-                                    %{{ user.accuracy.substring(0,5) }} <br><br>
+                                    {{ user.accuracy.substring(0,5) }}% <br><br>
                                     {{ user.playcount }}  
                                 </div>
 
@@ -57,48 +51,94 @@
             </div>
         </div>
 
-        <div class="panel-heading"><h4 class="panal-title" style="text-align:center">Best Scores</h4></div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm" style="text-align:center">
-                    Title
+        <div class="col-sm">
+            <div id="accordion">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <div class="row">
+                            <div class="col-6 col-md-2">
+                                <button class="btn btn-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Best Scores
+                                </button>
+                            </div>
+                            <div class="col-sm" id="bestScoreFrase">
+                                Look all the scores you made!
+                            </div>
+                        </div>
+                    </h5>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <table style="width:100%">
+                            <tr>
+                                <th id="title">Title</th>
+                                <th id="artist">Artist</th>
+                                <th id="bpm">BPM</th>
+                                <th id="creator">Creator</th>
+                                <th id="rank">Rank</th>
+                                <th id="maxcombo">Max Combo</th>
+                                <th id="pp">PP</th>
+                            </tr>
+                            <tr *ngFor="let score of bestScores" id="table">
+                                <td id="title">     {{ score[0].title }} </td>
+                                <td id="artist">    {{ score[0].artist }} </td>
+                                <td id="bpm">       {{ score[0].bpm }} </td>
+                                <td id="creator">   {{ score[0].creator }} </td>
+                                <td id="rank">      {{ score[0].rank }} </td>
+                                <td id="maxcombo">  {{ score[0].maxcombo }}/{{ score[0].max_combo }} </td>
+                                <td id="pp">        {{ score[0].pp }} </td>
+                            </tr>
+                        </table>                        
+                    </div>
+                  </div>
                 </div>
-                <div class="col-sm" style="text-align:center">
-                    Artist
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <div class="row">
+                            <div class="col-6 col-md-3">
+                                <button class="btn btn-secondary" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Recent Scores
+                                </button>
+                            </div>
+                            <div class="col-sm" id="recentScoreFrase">
+                                If you failed there will no PP given :( 
+                            </div>
+                        </div>    
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body" id="cardBody">
+                        <table  style="width:100%">
+                            <tr>
+                                <th>Title</th>
+                                <th>Artist</th>
+                                <th>BPM</th>
+                                <th>Creator</th>
+                                <th>Rank</th>
+                                <th>Max Combo</th>
+                                <th>PP</th>
+                            </tr>
+                            <tr *ngFor="let score of recentScores" id="table">
+                                <td> {{ score[0].title }} </td>
+                                <td> {{ score[0].artist }} </td>
+                                <td> {{ score[0].bpm }} </td>
+                                <td> {{ score[0].creator }} </td>
+                                <td> {{ score[0].rank }} </td>
+                                <td> {{ score[0].maxcombo }}/{{ score[0].max_combo }} </td>
+                                <td> {{ score[0].pp }} </td>
+                            </tr>
+                        </table>                       
+                    </div>
+                  </div>
                 </div>
-                <div class="col-sm" style="text-align:center">
-                    Rank
-                </div>
-                <div class="col-sm" style="text-align:center">
-                    Max Combo
-                </div>
-                <div class="col-sm" style="text-align:center">
-                    PP
-                </div>
-            </div>
+
+              </div>
         </div>
-    
         
-        <div class="panel-heading"><h4 class="panal-title" style="text-align:center">Recent Scores</h4></div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm" style="text-align:center">
-                    Title
-                </div>
-                <div class="col-sm" style="text-align:center">
-                    Artist
-                </div>
-                <div class="col-sm" style="text-align:center">
-                    Rank
-                </div>
-                <div class="col-sm" style="text-align:center">
-                    Max Combo
-                </div>
-                <div class="col-sm" style="text-align:center">
-                    PP
-                </div>
-            </div>
-        </div>
+
 
 
     </div>   
