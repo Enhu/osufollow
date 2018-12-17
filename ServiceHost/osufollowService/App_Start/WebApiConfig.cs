@@ -14,7 +14,7 @@ namespace osufollowService
 
             config.Filters.Add(new AuthorizeAttribute());
 
-            var cors = new EnableCorsAttribute("https://osufollow.herokuapp.com", "*", "*");
+            var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
             config.EnableCors(cors);
 
             var jsonFormatter = config.Formatters.JsonFormatter;
