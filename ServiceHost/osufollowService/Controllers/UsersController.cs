@@ -14,10 +14,12 @@ using osufollowService.Filters;
 using osufollowUser.Models;
 using osufollowService.Helpers;
 using Newtonsoft.Json;
+using System.Web.Http.Cors;
 
 namespace osufollowService.Controllers
 {
-    public class UsersController : ApiController
+  [EnableCors(origins: "*", headers: "*", methods: "*")]
+  public class UsersController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -86,33 +88,33 @@ namespace osufollowService.Controllers
     // POST: api/Users
     //registers the user
     [AllowAnonymous]
-        [ResponseType(typeof(User))]
-        [Route("api/users/register", Name = "RegisterUser")]
-        public async Task<IHttpActionResult> PostUser(User user)
-        {
-            string json;
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+    [HttpPost]
+    [Route("api/users/register", Name = "RegisterUser")]
+    public IHttpActionResult PostUser(User user)
+    {
+      string json;
+      if (!ModelState.IsValid)
+      {
+        return BadRequest(ModelState);
+      }
 
-            var dbUser = db.User.Where(a => a.Username.Equals(user.Username) || a.Email.Equals(user.Email)).FirstOrDefault();
+      var dbUser = db.User.Where(a => a.Username.Equals(user.Username) || a.Email.Equals(user.Email)).FirstOrDefault();
 
-            if (dbUser == null)
-            {
-                user.Password = PasswordHashing.HashPassword(user.Password);
+      if (dbUser == null)
+      {
+        user.Password = PasswordHashing.HashPassword(user.Password);
 
-                db.User.Add(user);
-                await db.SaveChangesAsync();
-                json = JsonConvert.SerializeObject(new { userExists = true });
-                return Ok(json);
-            }
-            json = JsonConvert.SerializeObject(new { userExists = false });
-            return Ok(json);
-        }
+        db.User.Add(user);
+        db.SaveChanges();
+        json = JsonConvert.SerializeObject(new { userExists = true });
+        return Ok(json);
+      }
+      json = JsonConvert.SerializeObject(new { userExists = false });
+      return Ok(json);
+    }
 
-        // DELETE: api/Users/5
-        [ResponseType(typeof(User))]
+    // DELETE: api/Users/5
+    [ResponseType(typeof(User))]
         public async Task<IHttpActionResult> DeleteUser(int id)
         {
             User user = await db.User.FindAsync(id);

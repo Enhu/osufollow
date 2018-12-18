@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="osufollowConnectionString-Web.config Connection String" description="osufollowConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=osufollow.database.windows.net;Initial Catalog=osufollow;User ID=osufollowadmin;Password=!Admin123;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\enhuc\\Source\\Repos\\osufollowApp\\ServiceHost\\osufollowService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='osufollowConnectionString']/@connectionString" />
+  </parameter>
+  <parameter name="osufollowConnectionString_DatabasePublish-Web.config Connection String" description="osufollowConnectionString_DatabasePublish Connection String used in web.config by the application to access the database." defaultValue="osufollowConnectionString_DatabasePublish.ConnetionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\enhuc\\Source\\Repos\\osufollowApp\\ServiceHost\\osufollowService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='osufollowConnectionString_DatabasePublish']/@connectionString" />
+  </parameter>
+</parameters>

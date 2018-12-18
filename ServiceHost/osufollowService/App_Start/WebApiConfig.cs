@@ -14,8 +14,8 @@ namespace osufollowService
 
             config.Filters.Add(new AuthorizeAttribute());
 
-            var cors = new EnableCorsAttribute("https://osufollow.herokuapp.com", "*", "*");
-            config.EnableCors(cors);
+            config.EnableCors();
+            config.MapHttpAttributeRoutes();
 
             var jsonFormatter = config.Formatters.JsonFormatter;
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -24,8 +24,6 @@ namespace osufollowService
             // Web API configuration and services
 
             // Web API routes
-            config.MapHttpAttributeRoutes();
-
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

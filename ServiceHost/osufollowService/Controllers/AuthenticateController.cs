@@ -7,10 +7,12 @@ using System.Net.Http;
 using System.Web.Http;
 using osufollowService.Helpers;
 using osufollowService.Models;
+using System.Web.Http.Cors;
 
 namespace osufollowService.Controllers
 {
-    public class AuthenticateController : ApiController
+  [EnableCors(origins: "*", headers: "*", methods: "*")]
+  public class AuthenticateController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
