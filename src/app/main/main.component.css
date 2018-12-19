@@ -12,3 +12,15 @@
 body{
     padding-top: 100PX;
 }
+
+.welcome-title{
+    text-align: center;
+    color: #c31060;
+    font-size: 40px;
+    padding-bottom: 30px;
+
+}
+
+#input {
+    border-radius: 20px;
+}

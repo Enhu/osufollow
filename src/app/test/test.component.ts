@@ -10,6 +10,9 @@ export class TestComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    var h1=$('#c1').height();
+    var h2 = 150-h1;
+    $('#c2').height(h2);
   }
 
 }
