@@ -1,14 +1,16 @@
 <div class="row">
   <div class="col-sm">
-    <div class="container-login100">
+    <div class="container-userdata">
       <div class="wrap-login100 p-t-30 p-b-50"> 
         <span class="login100-form-title p-b-41">
           Profile Details
         </span>
         <div style="text-align: center">
-          <img [src]="imageSrc" class="avatar" />
+          <img [src]="imageSrc" class="avatar">
         </div>
-        <div>
+        <br>
+        <br>
+        <div id="imageInput">
           <input type="file" (change)="previewImage($event)">
           <span class="focus-input100"></span>
         </div>
@@ -60,7 +62,32 @@
     </div>
   </div>
   <div class="col-sm">
-    asdasd
+    <div class="container-followers">
+      <div class="wrap-login100 p-t-30 p-b-50">
+        <span class="login100-form-title p-b-41">
+          Follow List
+        </span>
+        <br>
+        <div class="follow-list-text">
+          These are all the players you are interested!
+        </div>
+        <br><br><br><br><br><br>
+        <div class="list-group">
+<!--Los siguientes a van a ser reemplazados por el que tenga el for-->
+              <a *ngFor="let players of follows" href="#" class="list-group-item list-group-item-action wrap-list follow-user  item-hover" id="c2">
+                <div class="row">
+                  <div class="col-sm">
+                      {{ players.osuFollowedUser }}
+                  </div>
+                  <div class="col-sm rank">
+                      {{ players.rank }}
+                  </div>
+                </div>
+              </a>
+<!--Los siguientes a van a ser reemplazados por el que tenga el for-->
+          </div>
+    </div>
+  </div>
   </div>
 
 </div>

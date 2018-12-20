@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   email: string;
   password: string;
   confirmPassword: string;
+  follows:  Array<object> = [];
   
 
   constructor(private formBuilder: FormBuilder,
@@ -36,12 +37,20 @@ export class ProfileComponent implements OnInit {
 
   
   ngOnInit() {
+    var h1=$('#c1').height();
+    var h2 = 150-h1;
+    $('#c2').height(h2);
+
     let currentUser =  JSON.parse(localStorage.getItem('currentUser'));
     this.username = currentUser.user;
     this.osuId = currentUser.osuId;
     this.email = currentUser.email;
     this.password = 'password';
     this.confirmPassword = 'password';
+
+    if(currentUser.follows.length > 0){
+      this.follows = currentUser.follows;
+    }
 
     if(currentUser.avatar == ''){
       this.imageSrc = this.genericImgSrc;
