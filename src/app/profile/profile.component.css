@@ -35,6 +35,127 @@
       box-sizing: border-box;
   }
   
+  #imageInput {
+    color: white;
+  }
+  
+  .follow-list-text {
+    font-size: 25px;
+    color: #fff;
+    line-height: 1.2;
+    text-align: center;
+  
+    display: block;
+  }
+  
+  .wrap-list {
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 29px 0;
+  }
+  
+  .follow-user {
+    font-size: 20px;
+    line-height: 1.2;
+  
+    display: block;
+    width: 100%;
+    height: 50px;
+  
+    padding: 12px 0 0 20px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+  
+  .rank {
+    padding-right: 20px;
+    text-align:right;
+  }
+  
+  .container-followers {
+    width: 100%;  
+    min-height: 47vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px;
+  
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
+  
+  .container-userdata {
+    width: 100%;  
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px;
+  
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
+  
+  .list-group{
+    max-height: 700px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 10px;
+    border-bottom-left-radius: 10px;
+  
+  }
+  /*BEGIN Scrollbar subproperties*/
+  ::-webkit-scrollbar{
+    width: 20px;
+  }
+  
+  ::-webkit-scrollbar-corner{ 
+    display: none;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px transparent; 
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #c31060;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background:#d4187386; 
+  }
+  
+  /*END Scrollbar subproperties*/
+  
+  .item-hover:hover{
+     background-color: #c31060;
+  }
+  
+  /*End Custom CSS*/
+
   body, html {
       height: 100%;
       font-family: Ubuntu-Regular, sans-serif;
@@ -183,7 +304,6 @@
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.65);
   }
   
   .wrap-login100 {
