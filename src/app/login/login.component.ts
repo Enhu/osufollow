@@ -44,9 +44,9 @@ get f() { return this.loginForm.controls; }
         this.authenticationService.login(this.loginForm.value.username, this.loginForm.value.password)
             .pipe(first())
             .subscribe(
-                data => {
-                        location.reload()
+                data => {                       
                         this.router.navigate(['/main']);
+                        location.reload()
                 },
                 error => {
                     if(error.error == "Invalid User"){

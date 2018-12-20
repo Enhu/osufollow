@@ -49,7 +49,11 @@ export class ProfileComponent implements OnInit {
     this.confirmPassword = 'password';
 
     if(currentUser.follows.length > 0){
-      this.follows = currentUser.follows;
+      currentUser.follows.forEach(element => {
+        if(element.osuFollowedUser != null){
+          this.follows.push(element);  
+        }
+      });
     }
 
     if(currentUser.avatar == ''){
