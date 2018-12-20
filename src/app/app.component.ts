@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
   recentScores: any;
   private role: string;
   private loginInfo: [String, number];
+  userBest: Array<object> = [];
+  oldUserBest: Array<object> = [];
   loggedIn : boolean;
 
   constructor(private toastr: ToastrService, private apiService : APIService, private authenticationService: AuthenticationService, private globals: Globals, private router:Router) {
@@ -46,14 +48,60 @@ export class AppComponent implements OnInit {
       window.location.search = '?id=' + this.value;
     }
   }
+  comparer(otherArray){
+    return function(current){
+      return otherArray.filter(function(other){
+        return other.pp == current.pp
+      }).length == 0;
+    }
+  }
+
+
+  compareScores(playerName){
+    this.apiService.getUserBest(playerName).subscribe(
+      (data: Array<object>) =>{
+        this.userBest = data;
+      }
+    )
+
+    var onlyInA = this.userBest.filter(this.comparer(this.oldUserBest));
+    var onlyInB = this.oldUserBest.filter(this.comparer(this.userBest));
+
+    if(this.userBest.length > 0){
+    if(onlyInA.length > 0 || onlyInB.length > 0){
+      this.oldUserBest = this.userBest;
+      this.toastr.info('A user you follow has just set a new top score!','Information', { timeOut: 6000})
+    }
+  }
+  }
 
   ngOnInit(){
-    
+    if(this.loggedIn){
+      let currentUser =  JSON.parse(localStorage.getItem('currentUser'));
+
+      currentUser.follows.forEach(element => {
+        this.apiService.getUserBest(element.osuFollowedUser).subscribe(
+          (data: Array<object>) =>{
+            this.oldUserBest = data;
+          }
+        )
+      });
+
+      const notification = interval(10000).subscribe(
+          data =>{
+            currentUser.follows.forEach(element => {
+              if(element.osuFollowedUser != null){
+                this.compareScores(element.osuFollowedUser);
+              }
+            });
+          }
+      )
+    }
   }
 
   logout() {
     this.authenticationService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['/main']);
     location.reload();
   }
 

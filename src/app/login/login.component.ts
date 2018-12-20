@@ -45,8 +45,8 @@ get f() { return this.loginForm.controls; }
             .pipe(first())
             .subscribe(
                 data => {
-                        location.reload()
                         this.router.navigate(['/main']);
+                        location.reload()
                 },
                 error => {
                     if(error.error == "Invalid User"){
